@@ -17,30 +17,55 @@ st.set_page_config(page_title="IAT 무의식 인지 검사", layout="wide")
 # CSS 스타일: 버튼을 좌우로 배치하고 디자인 최적화
 st.markdown("""
     <style>
-    /* 1. 모바일에서도 좌우로 5:5 비율을 강제하는 설정 */
-    [data-testid="stHorizontalBlock"] {
+    /* 1. 상단 헤더 및 여백 제거 */
+    .st-emotion-cache-15zrgzn { display: none !important; }
+    [data-testid="stHeader"] { display: none !important; }
+    .block-container { padding: 1rem !important; max-width: 100% !important; }
+
+    /* 2. 단어(키워드) 크기 키우기 */
+    .word-display {
+        background-color: #000000; 
+        border-radius: 20px; 
+        text-align: center;
+        font-size: 80px !important; /* 키워드 크기 대폭 확대 */
+        font-weight: 900; 
+        padding: 40px; 
+        color: #ffffff; 
+        margin-bottom: 20px;
+    }
+
+    /* 3. 버튼 좌우 강제 배치 및 간격 최소화 */
+    div[data-testid="stHorizontalBlock"] {
         display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        gap: 10px !important; /* 버튼 사이 간격을 좁게 조절 */
+        flex-direction: row !important; /* 무조건 가로로 */
+        flex-wrap: nowrap !important;   /* 줄바꿈 금지 */
+        gap: 5px !important;            /* 버튼 사이 간격 거의 없게 */
+        justify-content: center !important;
     }
 
-    /* 2. 각 컬럼이 화면의 절반씩 차지하도록 고정 */
+    /* 4. 버튼 박스 설정 */
     [data-testid="column"] {
-        width: 50% !important;
-        flex: 1 1 50% !important;
-        min-width: 50% !important;
+        flex: 1 !important;
+        width: 48% !important; /* 화면의 절반씩 차지 */
+        min-width: 48% !important;
     }
 
-    /* 3. 버튼 크기 및 텍스트 설정 */
+    /* 5. 버튼 내부 디자인 */
     div[data-testid="column"] button {
         width: 100% !important; 
-        height: 250px !important; 
-        font-size: 60px !important; /* 모바일 대응 글자 크기 약간 축소 */
+        height: 300px !important; /* 버튼 높이 충분히 확보 */
+        font-size: 80px !important; 
         font-weight: 900 !important;
-        border: 8px solid #000000 !important; 
-        border-radius: 20px !important;
+        background-color: #ffffff !important; 
+        color: #000000 !important;
+        border: 10px solid #000000 !important; 
+        border-radius: 25px !important;
         padding: 0 !important;
+    }
+
+    /* 버튼 클릭 시 노란색 피드백 */
+    div[data-testid="column"] button:active { 
+        background-color: #ffff00 !important; 
     }
 
     </style>
