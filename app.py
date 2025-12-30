@@ -17,45 +17,32 @@ st.set_page_config(page_title="IAT 무의식 인지 검사", layout="wide")
 # CSS 스타일: 버튼을 좌우로 배치하고 디자인 최적화
 st.markdown("""
     <style>
-    /* 상단 링크 및 헤더 숨기기 */
-    .st-emotion-cache-15zrgzn { display: none !important; }
-    a { pointer-events: none; cursor: default; color: inherit; text-decoration: none; }
-    [data-testid="stHeader"] { display: none !important; }
-    .block-container { padding-top: 2rem !important; max-width: 100% !important; }
-    
-    /* 좌우 버튼 정렬 핵심 CSS */
-    div[data-testid="column"] {
-        padding: 0 10px !important;
+        /* 1. 모바일에서도 좌우로 5:5 비율을 강제하는 설정 */
+    [data-testid="stHorizontalBlock"] {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 10px !important; /* 버튼 사이 간격을 좁게 조절 */
     }
 
+    /* 2. 각 컬럼이 화면의 절반씩 차지하도록 고정 */
+    [data-testid="column"] {
+        width: 50% !important;
+        flex: 1 1 50% !important;
+        min-width: 50% !important;
+    }
+
+    /* 3. 버튼 크기 및 텍스트 설정 */
     div[data-testid="column"] button {
         width: 100% !important; 
-        height: 350px !important; /* 버튼 높이 충분히 확보 */
-        font-size: 80px !important; 
+        height: 250px !important; 
+        font-size: 60px !important; /* 모바일 대응 글자 크기 약간 축소 */
         font-weight: 900 !important;
-        background-color: #ffffff !important; 
-        color: #000000 !important;
-        border: 10px solid #000000 !important; 
-        border-radius: 30px !important;
-        cursor: pointer;
+        border: 8px solid #000000 !important; 
+        border-radius: 20px !important;
+        padding: 0 !important;
     }
-    
-    div[data-testid="column"] button:active { 
-        background-color: #ffff00 !important; 
-    }
-    
-    .word-display {
-        background-color: #000000; border-radius: 20px; text-align: center;
-        font-size: 85px; font-weight: 900; padding: 40px; color: #ffffff; margin-bottom: 30px;
-    }
-    
-    .result-box {
-        padding: 40px; background-color: #ffffff !important;
-        border: 8px solid #000000; border-radius: 25px; color: #000000 !important;
-    }
-    .result-header { color: #004085; font-size: 42px; font-weight: 900; margin-bottom: 20px; border-bottom: 3px solid #004085; padding-bottom: 10px; }
-    .analysis-text { font-size: 21px; line-height: 1.8; }
-    .highlight { color: #d63384; font-weight: bold; }
+
     </style>
     """, unsafe_allow_html=True)
 
