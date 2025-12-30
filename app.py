@@ -17,53 +17,63 @@ st.set_page_config(page_title="IAT 무의식 인지 검사", layout="wide")
 # CSS 스타일: 버튼을 좌우로 배치하고 디자인 최적화
 st.markdown("""
     <style>
-    /* 1. 상단 헤더 및 여백 제거 */
+    /* 1. 상단 여백 및 가로 여백 완전 제거 */
     .st-emotion-cache-15zrgzn { display: none !important; }
     [data-testid="stHeader"] { display: none !important; }
-    .block-container { padding: 1rem !important; max-width: 100% !important; }
+    .block-container { 
+        padding-top: 1rem !important; 
+        padding-left: 0.5rem !important; 
+        padding-right: 0.5rem !important; 
+        max-width: 100% !important; 
+    }
 
-    /* 2. 단어(키워드) 크기 키우기 */
+    /* 2. 키워드 표시창 (가로 꽉 차게) */
     .word-display {
         background-color: #000000; 
-        border-radius: 20px; 
+        border-radius: 15px; 
         text-align: center;
-        font-size: 80px !important; /* 키워드 크기 대폭 확대 */
+        font-size: 60px !important; /* 모바일 폭을 고려해 살짝 조정 */
         font-weight: 900; 
-        padding: 40px; 
+        padding: 30px 10px; 
         color: #ffffff; 
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+        width: 100%;
     }
 
-    /* 3. 버튼 좌우 강제 배치 및 간격 최소화 */
+    /* 3. 버튼 좌우 배치 강제 및 간격 0 */
     div[data-testid="stHorizontalBlock"] {
         display: flex !important;
-        flex-direction: row !important; /* 무조건 가로로 */
-        flex-wrap: nowrap !important;   /* 줄바꿈 금지 */
-        gap: 5px !important;            /* 버튼 사이 간격 거의 없게 */
-        justify-content: center !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 0px !important; /* 버튼 사이 간격 0 */
+        width: 100% !important;
     }
 
-    /* 4. 버튼 박스 설정 */
+    /* 4. 각 컬럼 설정 (가로 절반씩) */
     [data-testid="column"] {
-        flex: 1 !important;
-        width: 48% !important; /* 화면의 절반씩 차지 */
-        min-width: 48% !important;
+        flex: 1 1 50% !important;
+        min-width: 50% !important;
+        padding: 0 !important; /* 컬럼 사이 여백 제거 */
     }
 
-    /* 5. 버튼 내부 디자인 */
+    /* 5. 버튼 디자인 (화면 폭에 꽉 차게) */
     div[data-testid="column"] button {
         width: 100% !important; 
-        height: 300px !important; /* 버튼 높이 충분히 확보 */
+        height: 280px !important; 
         font-size: 80px !important; 
         font-weight: 900 !important;
         background-color: #ffffff !important; 
         color: #000000 !important;
-        border: 10px solid #000000 !important; 
-        border-radius: 25px !important;
+        border: 6px solid #000000 !important; /* 테두리 살짝 얇게 해서 공간 확보 */
+        border-radius: 10px !important;
+        margin: 0 !important;
         padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
-    /* 버튼 클릭 시 노란색 피드백 */
+    /* 클릭 시 피드백 */
     div[data-testid="column"] button:active { 
         background-color: #ffff00 !important; 
     }
