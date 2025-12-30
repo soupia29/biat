@@ -17,7 +17,7 @@ st.set_page_config(page_title="IAT 무의식 인지 검사", layout="wide")
 # CSS 스타일: 버튼을 좌우로 배치하고 디자인 최적화
 st.markdown("""
     <style>
-        /* 1. 모바일에서도 좌우로 5:5 비율을 강제하는 설정 */
+    /* 1. 모바일에서도 좌우로 5:5 비율을 강제하는 설정 */
     [data-testid="stHorizontalBlock"] {
         display: flex !important;
         flex-direction: row !important;
