@@ -100,14 +100,18 @@ words_pool = [
 
 # --- 1. 인트로 ---
 if st.session_state.step == 'intro':
-    st.title("🧠 잠재적 인지 연합 검사 (IAT)")
+    st.title("🧠 암묵적 연합 검사 (IAT)")
     st.markdown("""
-    ### 📋 검사 전 필독 안내사항
-    1. 반응 속도가 핵심!: 직관적으로 최대한 빠르게 누르세요(오래 생각X).
-    2. 환경: 방해 없는 곳에서 화면 중앙 단어에 집중하세요.
+    ### 검사 방법
+    : 암묵적 연합 검사는 당신이 특정 키워드를 다른 키워드와 얼마나 빨리 연결 시키는지 그 반응속도를 측정해 무의식적 편향을 알아보는 테스트입니다.
+    다음 화면에 나오는 기준을 꼼꼼히 확인하고, 빠르고 정확하게 눌러주세요!
+    
+    !필독!
+    1. 반응 속도가 핵심!: 직관적으로 최대한 빠르게 눌러 주세요(오래 생각X).
+    2. 방해가 없는 곳에서 화면 중앙 단어에 집중해 주세요.
     ---
     """)
-    u_self = st.selectbox("현재 본인이 느끼는 성향은?", ["과학 선호", "인문학 선호", "중립/융합"])
+    u_self = st.selectbox("현재 본인이 느끼는 본인의 성향은?", ["과학 선호", "인문학 선호", "중립/융합"])
     if st.button("내 무의식 확인하러 가기", use_container_width=True):
         st.session_state.self_choice = u_self
         st.session_state.current_words = random.sample(words_pool, len(words_pool))
@@ -117,8 +121,8 @@ if st.session_state.step == 'intro':
 elif st.session_state.step == 'block_1_instr':
     st.subheader("Phase 1: 첫 번째 연합")
     st.info("💡 기준: [과학] 또는 [긍정] 단어는 왼쪽(L) / 그 외는 오른쪽(R)")
-    st.warning("🚨 주의: 버튼 작음! (하지만 최대한 빨리 눌러야 함!)")
-    if st.button("이해함! 바로 시작", use_container_width=True):
+    st.warning("🚨 주의: 버튼 작음!")
+    if st.button("바로 시작", use_container_width=True):
         st.session_state.step = 'block_1'; st.session_state.idx = 0
         st.session_state.start_time = time.time(); st.rerun()
 
@@ -150,7 +154,7 @@ elif st.session_state.step == 'block_2_instr':
     st.subheader("Phase 2: 기준 전환")
     st.error("💡 기준 변경: [인문학] 또는 [긍정] 단어는 왼쪽(L) / 그 외는 오른쪽(R)")
     st.warning("🚨 다시 주의: 버튼 작음! 헷갈리지 말고 클릭하기!")
-    if st.button("뇌 준비 완료! 시작", use_container_width=True):
+    if st.button("준비 완료! 시작", use_container_width=True):
         st.session_state.current_words = random.sample(words_pool, len(words_pool))
         st.session_state.step = 'block_2'; st.session_state.idx = 0
         st.session_state.start_time = time.time(); st.rerun()
